@@ -19,6 +19,8 @@ public struct MockCGMState: SensorDisplayable {
     public var isLocal: Bool {
         return true
     }
+
+    public var sensorStartDate: Date?
 }
 
 public final class MockCGMManager: TestingCGMManager {
@@ -82,14 +84,13 @@ public final class MockCGMManager: TestingCGMManager {
         } else {
             self.mockSensorState = MockCGMState(isStateValid: true, trendType: nil)
         }
-
+        self.mockSensorState.sensorStartDate = Date()
         if let dataSourceRawValue = rawState["dataSource"] as? MockCGMDataSource.RawValue,
             let dataSource = MockCGMDataSource(rawValue: dataSourceRawValue) {
             self.dataSource = dataSource
         } else {
             self.dataSource = MockCGMDataSource(model: .noData)
         }
-
         setupGlucoseUpdateTimer()
     }
 
