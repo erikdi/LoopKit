@@ -21,6 +21,9 @@ public protocol SensorDisplayable {
 
     /// Returns whether the data is from a locally-connected device
     var isLocal: Bool { get }
+    
+    /// returns the sensor start date
+    var sensorStartDate: Date? { get }
 }
 
 
