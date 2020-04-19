@@ -20,6 +20,7 @@ public struct TemporaryScheduleOverride: Hashable {
     
     public enum EnactTrigger: Hashable {
         case local
+        case autosense
         case remote(String)
     }
 
@@ -141,6 +142,7 @@ extension TemporaryScheduleOverride: RawRepresentable {
     public var rawValue: RawValue {
         return [
             "context": context.rawValue,
+            "enactTrigger": enactTrigger.rawValue,
             "settings": settings.rawValue,
             "startDate": startDate.timeIntervalSince1970,
             "duration": duration.rawValue,
@@ -244,6 +246,8 @@ extension TemporaryScheduleOverride.EnactTrigger: RawRepresentable {
                 return nil
             }
             self = .remote(remoteAddress)
+        case "autosense":
+            self = .autosense
         default:
             return nil
         }
@@ -253,6 +257,8 @@ extension TemporaryScheduleOverride.EnactTrigger: RawRepresentable {
         switch self {
         case .local:
             return ["trigger": "local"]
+        case .autosense:
+            return ["autosense": "local"]
         case .remote(let remoteAddress):
             return [
                 "trigger": "remote",
