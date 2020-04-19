@@ -198,6 +198,9 @@ public final class TemporaryScheduleOverrideHistory {
             let end = override.endDate
             override.startDate = max(override.startDate, period.start)
             override.endDate = min(end, period.end)
+            if let factor = override.settings.insulinNeedsScaleFactor, factor == 0 {
+                override.settings.insulinNeedsScaleFactor = 0.001
+            }
         }
         validateOverridesReflectingEnabledDuration(overrides)
         return overrides

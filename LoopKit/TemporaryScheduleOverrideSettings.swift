@@ -59,8 +59,10 @@ extension TemporaryScheduleOverrideSettings: RawRepresentable {
         if version < 1 && targetRange != nil {
             return nil
         }
-
         self.insulinNeedsScaleFactor = rawValue[Key.insulinNeedsScaleFactor] as? Double
+        if let factor = self.insulinNeedsScaleFactor, factor == 0 {
+            self.insulinNeedsScaleFactor = 0.001
+        }
     }
 
     public var rawValue: RawValue {

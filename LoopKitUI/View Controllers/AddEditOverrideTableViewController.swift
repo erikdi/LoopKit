@@ -459,7 +459,7 @@ extension AddEditOverrideTableViewController {
         return TemporaryScheduleOverrideSettings(
             unit: glucoseUnit,
             targetRange: targetRange,
-            insulinNeedsScaleFactor: insulinNeedsScaleFactor == 1.0 ? nil : insulinNeedsScaleFactor
+            insulinNeedsScaleFactor: insulinNeedsScaleFactor == 1.0 ? nil : (insulinNeedsScaleFactor == 0.0 ? 0.001 : insulinNeedsScaleFactor)
         )
     }
 
