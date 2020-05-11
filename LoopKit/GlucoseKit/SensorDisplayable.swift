@@ -35,4 +35,8 @@ extension SensorDisplayable {
             return LocalizedString("Needs Attention", comment: "Sensor state description for the non-valid state")
         }
     }
+
+    public var sensorStartDate: Date? {
+        return nil
+    }
 }
