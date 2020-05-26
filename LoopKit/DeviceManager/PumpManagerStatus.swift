@@ -8,6 +8,21 @@
 import Foundation
 import HealthKit
 
+public struct RileyLinkStatus: Equatable {
+    public var identifier: String
+    public var batteryVoltage: Double?
+    public var chargerVoltage: Double?
+    public init(
+        identifier: String,
+        batteryVoltage: Double?,
+        chargerVoltage: Double?
+    ) {
+        self.identifier = identifier
+        self.batteryVoltage = batteryVoltage
+        self.chargerVoltage = chargerVoltage
+    }
+}
+
 public struct PumpManagerStatus: Equatable {
     
     public enum BasalDeliveryState: Equatable {
@@ -39,6 +54,8 @@ public struct PumpManagerStatus: Equatable {
     public var pumpBatteryChargeRemaining: Double?
     public var basalDeliveryState: BasalDeliveryState
     public var bolusState: BolusState
+
+    public var rileyLinkStatus: [RileyLinkStatus]?
 
     public init(
         timeZone: TimeZone,
