@@ -163,6 +163,9 @@ public protocol PumpManager: DeviceManager {
     ///   - completion: A closure called after the command is complete
     ///   - error: An error describing why the command failed
     func resumeDelivery(completion: @escaping (_ error: Error?) -> Void)
+
+    /// Disconnect and reconnect the connection of the bluetooth stack.
+    func reconnect(completion: @escaping (_ error: Error?) -> Void)
 }
 
 

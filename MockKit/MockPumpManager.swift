@@ -33,6 +33,10 @@ private enum MockPumpManagerError: LocalizedError {
 }
 
 public final class MockPumpManager: TestingPumpManager {
+    public func reconnect(completion: @escaping (Error?) -> Void) {
+        completion(nil)
+    }
+
 
     public static let managerIdentifier = "MockPumpManager"
     public static let localizedTitle = "Simulator"
